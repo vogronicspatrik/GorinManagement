@@ -1,0 +1,74 @@
+﻿@*@model List<GorinManagement.Models.ViewModels.PersonAttendanceViewModel>*@
+@model GorinManagement.Models.ViewModels.PersonAttendanceViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Jelenléti ív</h1>
+
+<form asp-action="Filter">
+    <table>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input asp-for="DateOfTraining" class="form-control" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group form-check">
+                    <input type="submit" value="Keres" class="btn btn-primary" />
+                </div>
+            </td>
+        </tr>
+    </table>
+    <tr>
+    @*<div class="form-group">
+        <input asp-for="DateOfTraining" class="form-control" />
+        <input type="submit" value="Keres" class="btn btn-primary" />
+    </div>*@
+</form>
+
+<form asp-action="Update">
+    <input type="hidden" asp-for="@Model.DateOfTraining" />
+    @if (Model.Attendances != null)
+    {
+        <table class="table">
+            <thead>
+                @*<tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsAttended)
+                        </th>
+                        <th></th>
+                    </tr>*@
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Attendances.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                @*<input type="hidden" asp-for="@Model.Attendances[i].Id" />*@
+                                <input type="hidden" asp-for="@Model.Attendances[i].FirstName" />
+                                <input type="hidden" asp-for="@Model.Attendances[i].PersonId" />
+                                <label asp-for="@Model.Attendances[i].FirstName" class="control-label"> @Model.Attendances[i].FirstName</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group form-check">
+                                <input asp-for="@Model.Attendances[i].IsAttended" class="form-check-input" />
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <input type="submit" value="Mentés" class="btn btn-primary" />
+        </div>
+    }
+</form>

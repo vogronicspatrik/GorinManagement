@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form enctype="multipart/form-data" asp-action="Upload">
+    <div>
+        <p>Töltsd be az aktuális havi számlakivonatot:</p>
+        <input type="file" name="file" />
+    </div>
+    <div>
+        <input type="submit" value="Upload" />
+    </div>
+</form>
+
